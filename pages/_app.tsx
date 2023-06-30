@@ -12,6 +12,8 @@ import {
   zora,
 } from 'wagmi/chains';
 import { publicProvider } from 'wagmi/providers/public';
+import { ChakraProvider } from '@chakra-ui/react';
+import { TokenGateProvider } from 'collabland-tokengate-react-context';
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
@@ -26,8 +28,8 @@ const { chains, publicClient, webSocketPublicClient } = configureChains(
 );
 
 const { connectors } = getDefaultWallets({
-  appName: 'RainbowKit App',
-  projectId: 'YOUR_PROJECT_ID',
+  appName: process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_NAME || '',
+  projectId: process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID || '',
   chains,
 });
 
@@ -40,11 +42,15 @@ const wagmiConfig = createConfig({
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <WagmiConfig config={wagmiConfig}>
-      <RainbowKitProvider chains={chains}>
-        <Component {...pageProps} />
-      </RainbowKitProvider>
-    </WagmiConfig>
+    <ChakraProvider>
+      <WagmiConfig config={wagmiConfig}>
+        <RainbowKitProvider chains={chains}>
+          <TokenGateProvider>
+            <Component {...pageProps} />
+          </TokenGateProvider>
+        </RainbowKitProvider>
+      </WagmiConfig>
+    </ChakraProvider>
   );
 }
 

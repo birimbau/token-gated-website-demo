@@ -1,29 +1,60 @@
-This is a [RainbowKit](https://rainbowkit.com) + [wagmi](https://wagmi.sh) + [Next.js](https://nextjs.org/) project bootstrapped with [`create-rainbowkit`](https://github.com/rainbow-me/rainbowkit/tree/main/packages/create-rainbowkit).
+# Collab Token Gated Page Demo
 
-## Getting Started
+This GitHub repository contains a demo page for testing the Collab Token Gated Page API. The demo allows you to create a token-gated page where users need to possess specific tokens to access its content.
 
-First, run the development server:
+## Setup
 
-```bash
+To run the project locally, follow these steps:
+
+1. Clone the repository to your local machine:
+
+git clone https://github.com/your-username/collab-token-gated-page-demo.git
+
+2. Navigate to the project's directory:
+
+cd collab-token-gated-page-demo
+
+3. Install the required dependencies using npm:
+
+npm install
+
+4. Obtain the necessary API keys:
+
+- Visit [WalletConnect Cloud](https://cloud.walletconnect.com/) and sign in to create a new project. Make a note of the project name and project ID.
+- Visit the [CollabLand API Dev Portal](https://dev-portal.collab.land/signin) and sign in to obtain an API key.
+
+5. Create a `.env` file in the project's root directory and fill it with the obtained API keys:
+
+NEXT_PUBLIC_COLLAB_LAND_API_KEY=YOUR_COLLAB_LAND_API_KEY
+NEXT_PUBLIC_WALLET_CONNECT_PROJECT_NAME=YOUR_WALLET_CONNECT_PROJECT_NAME
+NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID=YOUR_WALLET_CONNECT_PROJECT_ID
+
+6. Start the development server:
+
 npm run dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+7. Access the demo page by visiting [http://localhost:3000](http://localhost:3000) in your web browser.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Usage
 
-## Learn More
+Once the project is running and you have accessed the demo page, you can interact with the token-gated page. Users will need to possess specific tokens to gain access to the page's content. The page will verify token ownership through the Collab Token Gated Page API.
 
-To learn more about this stack, take a look at the following resources:
+Feel free to explore and test different scenarios related to token ownership and access restrictions.
 
-- [RainbowKit Documentation](https://rainbowkit.com) - Learn how to customize your wallet connection flow.
-- [wagmi Documentation](https://wagmi.sh) - Learn how to interact with Ethereum.
-- [Next.js Documentation](https://nextjs.org/docs) - Learn how to build a Next.js application.
+## Contributing
 
-You can check out [the RainbowKit GitHub repository](https://github.com/rainbow-me/rainbowkit) - your feedback and contributions are welcome!
+If you would like to contribute to this project, please follow the standard GitHub workflow:
 
-## Deploy on Vercel
+1. Fork the repository.
+2. Create a new branch for your changes.
+3. Make the necessary changes and commit them.
+4. Push your branch to your forked repository.
+5. Submit a pull request to the main repository.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Issues
 
-Check out the [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+If you encounter any issues while using the demo or have any suggestions for improvements, please open an issue in the GitHub repository's issue tracker.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).

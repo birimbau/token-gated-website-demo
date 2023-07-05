@@ -31,18 +31,18 @@ const Demo = () => {
     onSubmit: (values) => {
       checkRoles(
         {
-          account: values.address || '',
+          account: values.address!,
           rules: [
             {
-              type: 'ERC20',
-              chainId: 100,
-              minToken: '1',
-              contractAddress: '0x712b3d230F3C1c19db860d80619288b1F0BDd0Bd',
-              roleId: '001',
+              type: values.type!,
+              chainId: values.chainId!,
+              minToken: values.minToken!,
+              contractAddress: values.contractAddress!,
+              roleId: defaultRules.roleId,
             },
           ],
         },
-        process.env.NEXT_PUBLIC_COLLAB_LAND_API_KEY || ''
+        process.env.NEXT_PUBLIC_COLLAB_LAND_API_KEY!
       );
     },
   });
@@ -130,24 +130,6 @@ const Demo = () => {
               _placeholder={{ color: '#2A6462' }}
               textColor={'#74FBF7'}
             />
-
-            {/* <FormLabel htmlFor="maxToken">Maximum Tokens in Wallet (optional)</FormLabel>
-            <Input
-              id="maxToken"
-              name="maxToken"
-              type="number"
-              placeholder="Enter Maximum Tokens in Wallet (optional)"
-              onChange={formik.handleChange}
-              value={formik.values.maxToken}
-              disabled={isLoading}
-              variant="filled"
-              borderRadius={14}
-              marginBottom={4}
-              _placeholder={{ color: '#2A6462' }}
-              textColor={'#74FBF7'}
-
-              
-            /> */}
           </FormControl>
           <Button
             type="submit"

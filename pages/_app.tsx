@@ -1,10 +1,11 @@
-import '../styles/globals.css';
-import '@rainbow-me/rainbowkit/styles.css';
+import { ChakraProvider } from '@chakra-ui/react';
 import {
   darkTheme,
   getDefaultWallets,
   RainbowKitProvider,
 } from '@rainbow-me/rainbowkit';
+import '@rainbow-me/rainbowkit/styles.css';
+import { TokenGateProvider } from 'collabland-tokengate-react-context';
 import type { AppProps } from 'next/app';
 import { configureChains, createConfig, WagmiConfig } from 'wagmi';
 import {

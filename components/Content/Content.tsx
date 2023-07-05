@@ -8,21 +8,21 @@ const Content = () => {
   const { isConnected } = useAccount();
 
   return (
-    <S.Container className='py-3'>
+    <S.Container className="py-3">
       <S.CollabMascote
-        src='/collab.land-mascote.svg'
+        src="/collab.land-mascote.svg"
         width={554}
         height={677}
-        alt='Collab.land mascot'
+        alt="Collab.land mascot"
       />
-      <Container maxW='xl' rounded='md'>
+      <Container maxW="xl" rounded="md">
         {isConnected ? (
           <>
-            <Text fontSize='3xl'>Fill the form below!</Text>
+            <Text fontSize="3xl">Fill the form below!</Text>
             <Demo />
           </>
         ) : (
-          <Text fontSize='3xl'>Please connect your wallet</Text>
+          <Text fontSize="3xl">Please connect your wallet</Text>
         )}
       </Container>
     </S.Container>

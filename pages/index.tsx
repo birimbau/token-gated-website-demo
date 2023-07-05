@@ -1,10 +1,9 @@
-import { ConnectButton } from '@rainbow-me/rainbowkit';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-import { Container, Text } from '@chakra-ui/react';
-import Demo from '../components/Demo/Demo';
 import { useAccount } from 'wagmi';
+import Header from '../components/Header/Header';
+import Content from '../components/Content/Content';
 
 const Home: NextPage = () => {
   const { isConnected } = useAccount();
@@ -21,26 +20,9 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <header className='flex justify-between py-3'>
-          <Text fontSize='3xl'>Collab/Land Gated website demo</Text>
-          <div className='ml-auto'>
-            <ConnectButton />
-          </div>
-        </header>
-        <div className='py-3'>
-          <Container maxW='xl' rounded='md'>
-            {isConnected ? (
-              <>
-                <Text fontSize='3xl'>Fill the form below!</Text>
-                <Demo />
-              </>
-            ) : (
-              <Text fontSize='3xl'>Please connect your wallet</Text>
-            )}
-          </Container>
-        </div>
+        <Header />
+        <Content />
       </main>
-
       <footer className={styles.footer}>
         <a
           href='https://www.raidguild.org/'

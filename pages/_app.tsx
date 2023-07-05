@@ -1,6 +1,10 @@
 import '../styles/globals.css';
 import '@rainbow-me/rainbowkit/styles.css';
-import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import {
+  darkTheme,
+  getDefaultWallets,
+  RainbowKitProvider,
+} from '@rainbow-me/rainbowkit';
 import type { AppProps } from 'next/app';
 import { configureChains, createConfig, WagmiConfig } from 'wagmi';
 import {
@@ -12,12 +16,14 @@ import {
   zora,
 } from 'wagmi/chains';
 import { publicProvider } from 'wagmi/providers/public';
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { TokenGateProvider } from 'collabland-tokengate-react-context';
+import { CacheProvider } from '@chakra-ui/next-js';
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
     mainnet,
+    goerli,
     polygon,
     optimism,
     arbitrum,
@@ -40,17 +46,37 @@ const wagmiConfig = createConfig({
   webSocketPublicClient,
 });
 
+const colors = {
+  general: {
+    bg: '#000',
+    link: '#3898FF',
+  },
+};
+
+const styles = {
+  global: () => ({
+    body: {
+      bg: '#000',
+      color: '#FFFFFF',
+    },
+  }),
+};
+
+export const theme = extendTheme({ colors, styles });
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ChakraProvider>
-      <WagmiConfig config={wagmiConfig}>
-        <RainbowKitProvider chains={chains}>
-          <TokenGateProvider>
-            <Component {...pageProps} />
-          </TokenGateProvider>
-        </RainbowKitProvider>
-      </WagmiConfig>
-    </ChakraProvider>
+    <CacheProvider>
+      <ChakraProvider theme={theme}>
+        <WagmiConfig config={wagmiConfig}>
+          <RainbowKitProvider chains={chains} theme={darkTheme()}>
+            <TokenGateProvider>
+              <Component {...pageProps} />
+            </TokenGateProvider>
+          </RainbowKitProvider>
+        </WagmiConfig>
+      </ChakraProvider>
+    </CacheProvider>
   );
 }
 

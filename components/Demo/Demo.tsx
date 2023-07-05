@@ -75,10 +75,7 @@ const Demo = () => {
               value={formik.values.address}
               disabled={isLoading}
               variant="filled"
-              borderRadius={14}
               marginBottom={4}
-              _placeholder={{ color: '#2A6462' }}
-              textColor={'#74FBF7'}
             />
             <FormLabel htmlFor="chainId">Chain Id</FormLabel>
             <Input
@@ -90,10 +87,7 @@ const Demo = () => {
               value={formik.values.chainId}
               disabled={isLoading}
               variant="filled"
-              borderRadius={14}
               marginBottom={4}
-              _placeholder={{ color: '#2A6462' }}
-              textColor={'#74FBF7'}
             />
             <FormLabel htmlFor="type">Token Type</FormLabel>
             <Input
@@ -105,10 +99,7 @@ const Demo = () => {
               value={formik.values.type}
               disabled={isLoading}
               variant="filled"
-              borderRadius={14}
               marginBottom={4}
-              _placeholder={{ color: '#2A6462' }}
-              textColor={'#74FBF7'}
             />
             <FormLabel htmlFor="contractAddress">
               Token Contract Address
@@ -122,10 +113,7 @@ const Demo = () => {
               value={formik.values.contractAddress}
               disabled={isLoading}
               variant="filled"
-              borderRadius={14}
               marginBottom={4}
-              _placeholder={{ color: '#2A6462' }}
-              textColor={'#74FBF7'}
             />
             <FormLabel htmlFor="minToken">Minimum Tokens in Wallet</FormLabel>
             <Input
@@ -137,10 +125,7 @@ const Demo = () => {
               value={formik.values.minToken}
               disabled={isLoading}
               variant="filled"
-              borderRadius={14}
               marginBottom={4}
-              _placeholder={{ color: '#2A6462' }}
-              textColor={'#74FBF7'}
             />
           </FormControl>
           <Button
@@ -150,7 +135,6 @@ const Demo = () => {
             isLoading={isLoading}
             backgroundColor={'#2A6462'}
             paddingX={10}
-            borderRadius={14}
           >
             Check Role
           </Button>

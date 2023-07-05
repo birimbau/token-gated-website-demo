@@ -42,7 +42,7 @@ const Demo = () => {
             },
           ],
         },
-        process.env.NEXT_PUBLIC_COLLAB_LAND_API_KE || ''
+        process.env.NEXT_PUBLIC_COLLAB_LAND_API_KEY || ''
       );
     },
   });

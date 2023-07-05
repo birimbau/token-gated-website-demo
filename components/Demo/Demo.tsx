@@ -152,9 +152,11 @@ const Demo = () => {
           <Button
             type="submit"
             colorScheme="green"
-            width="full"
+            width="fit-content"
             isLoading={isLoading}
             backgroundColor={'#2A6462'}
+            paddingX={10}
+            borderRadius={14}
           >
             Check Role
           </Button>

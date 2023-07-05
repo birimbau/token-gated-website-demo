@@ -1,11 +1,9 @@
-import { ChakraProvider } from '@chakra-ui/react';
 import {
   darkTheme,
   getDefaultWallets,
   RainbowKitProvider,
 } from '@rainbow-me/rainbowkit';
 import '@rainbow-me/rainbowkit/styles.css';
-import { TokenGateProvider } from 'collabland-tokengate-react-context';
 import type { AppProps } from 'next/app';
 import { configureChains, createConfig, WagmiConfig } from 'wagmi';
 import {
@@ -20,6 +18,7 @@ import { publicProvider } from 'wagmi/providers/public';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { TokenGateProvider } from 'collabland-tokengate-react-context';
 import { CacheProvider } from '@chakra-ui/next-js';
+import '../styles/globals.css';
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [

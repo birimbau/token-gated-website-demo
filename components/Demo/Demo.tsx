@@ -9,6 +9,7 @@ import { TokenGateContext } from 'collabland-tokengate-react-context';
 import { useFormik } from 'formik';
 import { useContext } from 'react';
 import { useAccount } from 'wagmi';
+import * as Yup from 'yup';
 
 const defaultRules = {
   type: 'ERC20',
@@ -17,8 +18,18 @@ const defaultRules = {
   contractAddress: '0xdac17f958d2ee523a2206206994597c13d831ec7', // Token Tether USD
   roleId: '001',
 };
+
+const RulesValidationSchema = Yup.object().shape({
+  type: Yup.string().required('Required'),
+  chainId: Yup.number().required('Required'),
+  minToken: Yup.number().positive().required('Required'),
+  contractAddress: Yup.string().required('Required'),
+  roleId: Yup.string().required('Required'),
+});
+
 const Demo = () => {
   const { address } = useAccount();
+  const { checkRoles, isLoading, result, error } = useContext(TokenGateContext);
 
   const formik = useFormik({
     initialValues: {
@@ -27,6 +38,7 @@ const Demo = () => {
       type: defaultRules.type,
       contractAddress: defaultRules.contractAddress,
       minToken: defaultRules.minToken,
+      roleId: defaultRules.roleId,
     },
     onSubmit: (values) => {
       checkRoles(
@@ -38,15 +50,15 @@ const Demo = () => {
               chainId: values.chainId!,
               minToken: values.minToken!,
               contractAddress: values.contractAddress!,
-              roleId: defaultRules.roleId,
+              roleId: values.roleId,
             },
           ],
         },
         process.env.NEXT_PUBLIC_COLLAB_LAND_API_KEY!
       );
     },
+    validationSchema: RulesValidationSchema,
   });
-  const { checkRoles, isLoading, result, error } = useContext(TokenGateContext);
 
   return (
     <>

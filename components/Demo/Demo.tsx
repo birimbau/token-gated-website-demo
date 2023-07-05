@@ -49,23 +49,23 @@ const Demo = () => {
   return (
     <>
       <form onSubmit={formik.handleSubmit}>
-        <VStack spacing={4} align='flex-start'>
+        <VStack spacing={4} align="flex-start">
           <FormControl>
-            <FormLabel htmlFor='address'>Address</FormLabel>
+            <FormLabel htmlFor="address">Address</FormLabel>
             <Input
-              id='address'
-              name='address'
-              type='address'
-              variant='filled'
+              id="address"
+              name="address"
+              type="address"
+              variant="filled"
               onChange={formik.handleChange}
               value={formik.values.address}
               disabled={isLoading}
             />
           </FormControl>
           <Button
-            type='submit'
-            colorScheme='purple'
-            width='full'
+            type="submit"
+            colorScheme="purple"
+            width="full"
             isLoading={isLoading}
           >
             Check Role
@@ -80,7 +80,7 @@ const Demo = () => {
             </div>
           );
         })}
-      {error && <div className='font-bold text-red-900'>Error: {error}</div>}
+      {error && <div className="font-bold text-red-900">Error: {error}</div>}
     </>
   );
 };

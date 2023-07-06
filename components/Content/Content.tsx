@@ -1,7 +1,6 @@
-import { Container, Text } from '@chakra-ui/react';
+import { Flex, Text } from '@chakra-ui/react';
 import { useAccount } from 'wagmi';
 import Demo from '../Demo/Demo';
-import Image from 'next/image';
 import * as S from './Content.styled';
 
 const Content = () => {
@@ -15,16 +14,16 @@ const Content = () => {
         height={677}
         alt="Collab.land mascot"
       />
-      <Container maxW="xl" rounded="md">
+      <Flex>
         {isConnected ? (
-          <>
+          <div>
             <Text fontSize="3xl">Fill the form below!</Text>
             <Demo />
-          </>
+          </div>
         ) : (
           <Text fontSize="3xl">Please connect your wallet</Text>
         )}
-      </Container>
+      </Flex>
     </S.Container>
   );
 };

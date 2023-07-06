@@ -2,7 +2,10 @@ import {
   Button,
   FormControl,
   FormLabel,
+  HStack,
   Input,
+  Text,
+  Textarea,
   VStack,
 } from '@chakra-ui/react';
 import { TokenGateContext } from 'collabland-tokengate-react-context';
@@ -61,95 +64,106 @@ const Demo = () => {
   });
 
   return (
-    <>
-      <form onSubmit={formik.handleSubmit}>
-        <VStack spacing={4} align="flex-start">
-          <FormControl isRequired>
-            <FormLabel htmlFor="address">Wallet Address</FormLabel>
-            <Input
-              id="address"
-              name="address"
-              type="address"
-              placeholder="Enter Wallet Address"
-              onChange={formik.handleChange}
-              value={formik.values.address}
-              disabled={isLoading}
-              variant="filled"
-              marginBottom={4}
-            />
-            <FormLabel htmlFor="chainId">Chain Id</FormLabel>
-            <Input
-              id="chainId"
-              name="chainId"
-              type="number"
-              placeholder="Enter Chain ID"
-              onChange={formik.handleChange}
-              value={formik.values.chainId}
-              disabled={isLoading}
-              variant="filled"
-              marginBottom={4}
-            />
-            <FormLabel htmlFor="type">Token Type</FormLabel>
-            <Input
-              id="type"
-              name="type"
-              type="text"
-              placeholder="Enter Token Type"
-              onChange={formik.handleChange}
-              value={formik.values.type}
-              disabled={isLoading}
-              variant="filled"
-              marginBottom={4}
-            />
-            <FormLabel htmlFor="contractAddress">
-              Token Contract Address
-            </FormLabel>
-            <Input
-              id="contractAddress"
-              name="contractAddress"
-              type="address"
-              placeholder="Enter Token Contract Address"
-              onChange={formik.handleChange}
-              value={formik.values.contractAddress}
-              disabled={isLoading}
-              variant="filled"
-              marginBottom={4}
-            />
-            <FormLabel htmlFor="minToken">Minimum Tokens in Wallet</FormLabel>
-            <Input
-              id="minToken"
-              name="minToken"
-              type="number"
-              placeholder="Enter Minimum Tokens in Wallet"
-              onChange={formik.handleChange}
-              value={formik.values.minToken}
-              disabled={isLoading}
-              variant="filled"
-              marginBottom={4}
-            />
-          </FormControl>
-          <Button
-            type="submit"
-            colorScheme="green"
-            width="fit-content"
-            isLoading={isLoading}
-            backgroundColor={'#2A6462'}
-            paddingX={10}
+    <HStack spacing={4}>
+      {/* TODO fix width of this div */}
+      <div>
+        <form onSubmit={formik.handleSubmit}>
+          <VStack spacing={4} align="flex-start">
+            <FormControl isRequired>
+              <FormLabel htmlFor="address">Wallet Address</FormLabel>
+              <Input
+                id="address"
+                name="address"
+                type="address"
+                placeholder="Enter Wallet Address"
+                onChange={formik.handleChange}
+                value={formik.values.address}
+                disabled={isLoading}
+                variant="filled"
+                marginBottom={4}
+              />
+              <FormLabel htmlFor="chainId">Chain Id</FormLabel>
+              <Input
+                id="chainId"
+                name="chainId"
+                type="number"
+                placeholder="Enter Chain ID"
+                onChange={formik.handleChange}
+                value={formik.values.chainId}
+                disabled={isLoading}
+                variant="filled"
+                marginBottom={4}
+              />
+              <FormLabel htmlFor="type">Token Type</FormLabel>
+              <Input
+                id="type"
+                name="type"
+                type="text"
+                placeholder="Enter Token Type"
+                onChange={formik.handleChange}
+                value={formik.values.type}
+                disabled={isLoading}
+                variant="filled"
+                marginBottom={4}
+              />
+              <FormLabel htmlFor="contractAddress">
+                Token Contract Address
+              </FormLabel>
+              <Input
+                id="contractAddress"
+                name="contractAddress"
+                type="address"
+                placeholder="Enter Token Contract Address"
+                onChange={formik.handleChange}
+                value={formik.values.contractAddress}
+                disabled={isLoading}
+                variant="filled"
+                marginBottom={4}
+              />
+              <FormLabel htmlFor="minToken">Minimum Tokens in Wallet</FormLabel>
+              <Input
+                id="minToken"
+                name="minToken"
+                type="number"
+                placeholder="Enter Minimum Tokens in Wallet"
+                onChange={formik.handleChange}
+                value={formik.values.minToken}
+                disabled={isLoading}
+                variant="filled"
+                marginBottom={4}
+              />
+            </FormControl>
+            <Button
+              type="submit"
+              colorScheme="green"
+              width="fit-content"
+              isLoading={isLoading}
+              backgroundColor={'#2A6462'}
+              paddingX={10}
+            >
+              Check Role
+            </Button>
+          </VStack>
+        </form>
+        {error && <div className="font-bold text-red-900">Error: {error}</div>}
+      </div>
+      {result?.roles?.[0] && (
+        <VStack align={'flex-start'}>
+          <Text
+            fontSize="2xl"
+            mb={3}
+            color={result.roles[0].granted ? '#1B8600' : '#860000'}
           >
-            Check Role
-          </Button>
+            Access {result.roles[0].granted ? 'Granted' : 'Denied'}
+          </Text>
+          <Text>Data sent:</Text>
+          {/* TODO - change font. - fix size */}
+          <Textarea cols={30} rows={15} disabled>
+            {JSON.stringify(formik.values, undefined, 4)}
+          </Textarea>
         </VStack>
-      </form>
-      {result?.roles &&
-        result?.roles.map((role) => {
-          return (
-            <div key={role.id}>
-              Role:{role.id} - Granted:{String(role.granted)}
-            </div>
-          );
-        })}
-      {error && <div className="font-bold text-red-900">Error: {error}</div>}
-    </>
+      )}
+    </HStack>
   );
 };
 

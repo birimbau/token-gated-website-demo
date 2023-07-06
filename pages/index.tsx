@@ -6,8 +6,6 @@ import Header from '../components/Header/Header';
 import Content from '../components/Content/Content';
 
 const Home: NextPage = () => {
-  const { isConnected } = useAccount();
-
   return (
     <div className={styles.container}>
       <Head>

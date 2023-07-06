@@ -50,6 +50,9 @@ const colors = {
   general: {
     bg: '#000',
     link: '#3898FF',
+    button: '#2A6462',
+    success: '#1B8600',
+    error: '#860000',
   },
 };
 

@@ -183,7 +183,7 @@ const Demo = () => {
               Access {result.roles[0].granted ? 'Granted' : 'Denied'}
             </Text>
             <Text>Data sent:</Text>
-            <pre>
+            <pre className="p-4 backdrop-blur rounded-lg">
               {JSON.stringify(
                 {
                   ...formik.values,

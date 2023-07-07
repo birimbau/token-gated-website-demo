@@ -11,6 +11,8 @@ const Input: React.FC<InputProps> = (p) => {
       height="44px"
       fontSize="16px"
       _hover={{ bg: '#000', borderColor: '#3898FF' }}
+      _focus={{ bg: '#000', borderColor: '#3898FF' }}
+      _disabled={{ bg: '#000', borderColor: '#3898FF' }}
     />
   );
 };

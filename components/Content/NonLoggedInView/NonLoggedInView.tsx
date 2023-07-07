@@ -1,4 +1,4 @@
-import { Button, VStack, Text, Link } from '@chakra-ui/react';
+import { Button, Link, Text, VStack } from '@chakra-ui/react';
 import { useConnectModal } from '@rainbow-me/rainbowkit';
 // import Link from 'next/link';
 
@@ -20,12 +20,17 @@ const NonLoggedInView = () => {
       </Text>
       <VStack alignItems="flex-start">
         <Link
+          className="underline"
           href="https://www.npmjs.com/package/collabland-tokengate-react-context"
           target="_blank"
         >
           Token Gate React Context
         </Link>
-        <Link href="/" target="_blank">
+        <Link
+          className="underline"
+          href="https://docs.collab.land/help-docs/key-features/token-gate-communities/"
+          target="_blank"
+        >
           Collab.Land Token-Gate Docs
         </Link>
       </VStack>

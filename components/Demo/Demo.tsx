@@ -6,14 +6,14 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react';
-import CustomInput from '../Input/Input';
 import { TokenGateContext } from 'collabland-tokengate-react-context';
 import { useFormik } from 'formik';
 import { useContext } from 'react';
 import { useAccount } from 'wagmi';
 import * as Yup from 'yup';
-import Button from '../Button/Button';
 import { truncateAddress } from '../../utils/utils';
+import Button from '../Button/Button';
+import CustomInput from '../Input/Input';
 
 const defaultRules = {
   type: 'ERC20',
@@ -153,18 +153,21 @@ const Demo = () => {
       >
         <VStack alignItems="flex-start">
           <Link
+            className="underline"
             href="https://www.npmjs.com/package/collabland-tokengate-react-context"
             target="_blank"
           >
             Token Gate React Context
           </Link>
           <Link
+            className="underline"
             href="https://docs.collab.land/help-docs/key-features/token-gate-communities/"
             target="_blank"
           >
             Collab.Land Token-Gate Docs
           </Link>
           <Link
+            className="underline"
             href="https://docs.collab.land/help-docs/key-features/token-gate-communities/#supported-blockchains--tokens"
             target="_blank"
           >

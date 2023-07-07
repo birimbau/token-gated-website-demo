@@ -1,18 +1,19 @@
 import {
-  Button,
   FormControl,
   FormLabel,
   HStack,
-  Input,
+  Link,
   Text,
-  Textarea,
   VStack,
 } from '@chakra-ui/react';
+import CustomInput from '../Input/Input';
 import { TokenGateContext } from 'collabland-tokengate-react-context';
 import { useFormik } from 'formik';
 import { useContext } from 'react';
 import { useAccount } from 'wagmi';
 import * as Yup from 'yup';
+import Button from '../Button/Button';
+import { truncateAddress } from '../../utils/utils';
 
 const defaultRules = {
   type: 'ERC20',
@@ -64,81 +65,78 @@ const Demo = () => {
   });
 
   return (
-    <HStack spacing={4}>
-      {/* TODO fix width of this div */}
-      <div>
-        <form onSubmit={formik.handleSubmit}>
+    <HStack spacing="67px" alignItems="flex-start">
+      <VStack width="424px">
+        <form onSubmit={formik.handleSubmit} className="w-full">
           <VStack spacing={4} align="flex-start">
             <FormControl isRequired>
               <FormLabel htmlFor="address">Wallet Address</FormLabel>
-              <Input
+              <CustomInput
                 id="address"
                 name="address"
-                type="address"
+                type="string"
                 placeholder="Enter Wallet Address"
                 onChange={formik.handleChange}
                 value={formik.values.address}
-                disabled={isLoading}
+                isDisabled={isLoading}
                 variant="filled"
                 marginBottom={4}
               />
               <FormLabel htmlFor="chainId">Chain Id</FormLabel>
-              <Input
+              <CustomInput
                 id="chainId"
                 name="chainId"
                 type="number"
                 placeholder="Enter Chain ID"
                 onChange={formik.handleChange}
                 value={formik.values.chainId}
-                disabled={isLoading}
+                isDisabled={isLoading}
                 variant="filled"
                 marginBottom={4}
               />
               <FormLabel htmlFor="type">Token Type</FormLabel>
-              <Input
+              <CustomInput
                 id="type"
                 name="type"
                 type="text"
                 placeholder="Enter Token Type"
                 onChange={formik.handleChange}
                 value={formik.values.type}
-                disabled={isLoading}
+                isDisabled={isLoading}
                 variant="filled"
                 marginBottom={4}
               />
               <FormLabel htmlFor="contractAddress">
                 Token Contract Address
               </FormLabel>
-              <Input
+              <CustomInput
                 id="contractAddress"
                 name="contractAddress"
                 type="address"
                 placeholder="Enter Token Contract Address"
                 onChange={formik.handleChange}
                 value={formik.values.contractAddress}
-                disabled={isLoading}
+                isDisabled={isLoading}
                 variant="filled"
                 marginBottom={4}
               />
               <FormLabel htmlFor="minToken">Minimum Tokens in Wallet</FormLabel>
-              <Input
+              <CustomInput
                 id="minToken"
                 name="minToken"
                 type="number"
                 placeholder="Enter Minimum Tokens in Wallet"
                 onChange={formik.handleChange}
                 value={formik.values.minToken}
-                disabled={isLoading}
+                isDisabled={isLoading}
                 variant="filled"
                 marginBottom={4}
               />
             </FormControl>
             <Button
               type="submit"
-              colorScheme="green"
               width="fit-content"
               isLoading={isLoading}
-              backgroundColor={'#2A6462'}
               paddingX={10}
             >
               Check Role
@@ -146,23 +144,61 @@ const Demo = () => {
           </VStack>
         </form>
         {error && <div className="font-bold text-red-900">Error: {error}</div>}
-      </div>
-      {result?.roles?.[0] && (
-        <VStack align={'flex-start'}>
-          <Text
-            fontSize="2xl"
-            mb={3}
-            color={result.roles[0].granted ? '#1B8600' : '#860000'}
+      </VStack>
+      <VStack
+        align="flex-start"
+        alignItems="flex-start"
+        width="296px"
+        spacing="63px"
+      >
+        <VStack alignItems="flex-start">
+          <Link
+            href="https://www.npmjs.com/package/collabland-tokengate-react-context"
+            target="_blank"
           >
-            Access {result.roles[0].granted ? 'Granted' : 'Denied'}
-          </Text>
-          <Text>Data sent:</Text>
-          {/* TODO - change font. - fix size */}
-          <Textarea cols={30} rows={15} disabled>
-            {JSON.stringify(formik.values, undefined, 4)}
-          </Textarea>
+            Token Gate React Context
+          </Link>
+          <Link
+            href="https://docs.collab.land/help-docs/key-features/token-gate-communities/"
+            target="_blank"
+          >
+            Collab.Land Token-Gate Docs
+          </Link>
+          <Link
+            href="https://docs.collab.land/help-docs/key-features/token-gate-communities/#supported-blockchains--tokens"
+            target="_blank"
+          >
+            Supported Blockchains &amp; Token
+          </Link>
         </VStack>
-      )}
+        {result?.roles?.[0] && (
+          <div>
+            <Text
+              fontSize="2xl"
+              mb={3}
+              color={
+                result.roles[0].granted ? 'general.success' : 'general.error'
+              }
+            >
+              Access {result.roles[0].granted ? 'Granted' : 'Denied'}
+            </Text>
+            <Text>Data sent:</Text>
+            <pre className="p-4 backdrop-blur rounded-lg">
+              {JSON.stringify(
+                {
+                  ...formik.values,
+                  address: truncateAddress(formik.values.address!),
+                  contractAddress: truncateAddress(
+                    formik.values.contractAddress
+                  ),
+                },
+                undefined,
+                2
+              )}
+            </pre>
+          </div>
+        )}
+      </VStack>
     </HStack>
   );
 };

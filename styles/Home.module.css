@@ -1,9 +1,11 @@
 .container {
-  padding: 0 2rem;
+  padding: 0 20px 0 79px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  z-index: 1;
+  position: relative;
 }
 
 .main {
@@ -14,7 +16,6 @@
 
 .footer {
   padding: 2rem 0;
-  border-top: 1px solid #eaeaea;
   justify-content: center;
   align-items: center;
 }

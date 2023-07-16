@@ -19,7 +19,7 @@ const defaultRules = {
   type: 'ERC20',
   chainId: 1, // Ethereum
   minToken: '1',
-  contractAddress: '0xdac17f958d2ee523a2206206994597c13d831ec7', // Token Tether USD
+  contractAddress: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48', // Token USD Coin USDC
   roleId: '001',
 };
 
@@ -65,12 +65,17 @@ const Demo = () => {
   });
 
   return (
-    <HStack spacing="67px" alignItems="flex-start">
-      <VStack width="424px">
+    <HStack spacing="96px" alignItems="flex-start" paddingLeft="40px">
+      <VStack width="384px">
         <form onSubmit={formik.handleSubmit} className="w-full">
-          <VStack spacing={4} align="flex-start">
+          <VStack spacing={6} align="flex-start">
+          <Text fontSize="3xl" color="general.link">Wallet Connected</Text>
+      <Text fontSize="md">
+      The form is populated with your wallet address, and data to check the wallet for 1 USDC on Ethereum.
+      Keep, or adjust the inputs, then click 'Check Role' to validate your assets and obtain access.
+      </Text>
             <FormControl isRequired>
-              <FormLabel htmlFor="address">Wallet Address</FormLabel>
+              <FormLabel htmlFor="address" fontSize="sm">Wallet Address</FormLabel>
               <CustomInput
                 id="address"
                 name="address"
@@ -82,7 +87,7 @@ const Demo = () => {
                 variant="filled"
                 marginBottom={4}
               />
-              <FormLabel htmlFor="chainId">Chain Id</FormLabel>
+              <FormLabel htmlFor="chainId" fontSize="sm">Chain Id</FormLabel>
               <CustomInput
                 id="chainId"
                 name="chainId"
@@ -94,7 +99,7 @@ const Demo = () => {
                 variant="filled"
                 marginBottom={4}
               />
-              <FormLabel htmlFor="type">Token Type</FormLabel>
+              <FormLabel htmlFor="type" fontSize="sm">Token Type</FormLabel>
               <CustomInput
                 id="type"
                 name="type"
@@ -106,7 +111,7 @@ const Demo = () => {
                 variant="filled"
                 marginBottom={4}
               />
-              <FormLabel htmlFor="contractAddress">
+              <FormLabel htmlFor="contractAddress" fontSize="sm">
                 Token Contract Address
               </FormLabel>
               <CustomInput
@@ -120,7 +125,7 @@ const Demo = () => {
                 variant="filled"
                 marginBottom={4}
               />
-              <FormLabel htmlFor="minToken">Minimum Tokens in Wallet</FormLabel>
+              <FormLabel htmlFor="minToken" fontSize="sm">Minimum Tokens in Wallet</FormLabel>
               <CustomInput
                 id="minToken"
                 name="minToken"
@@ -149,9 +154,10 @@ const Demo = () => {
         align="flex-start"
         alignItems="flex-start"
         width="296px"
-        spacing="63px"
+        spacing="54px"
+        paddingTop="69px"
       >
-        <VStack alignItems="flex-start">
+        <VStack alignItems="flex-start" fontSize="md">
           <Link
             className="underline"
             href="https://www.npmjs.com/package/collabland-tokengate-react-context"
@@ -186,7 +192,7 @@ const Demo = () => {
               Access {result.roles[0].granted ? 'Granted' : 'Denied'}
             </Text>
             <Text>Data sent:</Text>
-            <pre className="p-4 backdrop-blur rounded-lg">
+            <pre className="p-4 rounded-lg">
               {JSON.stringify(
                 {
                   ...formik.values,

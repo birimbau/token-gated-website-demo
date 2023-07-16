@@ -6,8 +6,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: Oxygen, Roboto, Open-Sans, sans-serif;
   position: relative;
 }
 
@@ -20,8 +19,13 @@ body::before {
   width: 100%;
   height: 100%;
   background-size: cover;
+  opacity: 50%;
 }
-
+input {
+  
+  font-family: Inconsolata, monospace, sans-serif;
+  
+}
 a {
   color: inherit;
   text-decoration: none;

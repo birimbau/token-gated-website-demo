@@ -61,7 +61,14 @@ const styles = {
     body: {
       bg: '#000',
       color: '#FFFFFF',
+      fontFamily: 'Oxygen, Roboto, Open Sans, sans-serif',
     },
+    'input': {
+      fontFamily: 'Inconsolata, monospace',
+    },
+    'pre': {
+      fontFamily: 'Inconsolata, monospace',
+    }
   }),
 };
 

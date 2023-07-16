@@ -17,11 +17,11 @@ const Content = () => {
   }
 
   return (
-    <HStack className="py-3" justifyContent="center" maxW="1500px">
+    <HStack className="py-3" justifyContent="center">
       <S.CollabMascote
         src="/collab.land-mascote.svg"
-        width={554}
-        height={677}
+        width={450}
+        height={550}
         alt="Collab.land mascot"
       />
       {isConnected ? <Demo /> : <NonLoggedInView />}
